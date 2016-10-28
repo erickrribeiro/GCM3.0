@@ -24,8 +24,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
 import info.androidhive.gcm.R;
 import info.androidhive.gcm.adapter.ChatRoomsAdapter;
 import info.androidhive.gcm.app.Config;
@@ -190,6 +188,10 @@ public class MainActivity extends AppCompatActivity {
         switch (menuItem.getItemId()) {
             case R.id.action_logout:
                 MyApplication.getInstance().logout();
+                break;
+            case R.id.action_settings:
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(menuItem);

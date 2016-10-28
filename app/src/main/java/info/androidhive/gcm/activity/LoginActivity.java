@@ -1,7 +1,9 @@
 package info.androidhive.gcm.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +11,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -73,6 +78,25 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_login, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch (menuItem.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(LoginActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
+
     /**
      * logging in user. Will make http post request with name, email
      * as parameters
@@ -89,8 +113,13 @@ public class LoginActivity extends AppCompatActivity {
         final String name = inputName.getText().toString();
         final String email = inputEmail.getText().toString();
 
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String ip = SP.getString("example_text", "NA");
+
+        Log.d("Tag", ip);
+
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                EndPoints.LOGIN, new Response.Listener<String>() {
+                EndPoints.LOGIN.replace("<ip>", ip), new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {

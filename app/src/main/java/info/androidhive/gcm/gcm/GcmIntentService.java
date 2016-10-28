@@ -99,7 +99,10 @@ public class GcmIntentService extends IntentService {
             return;
         }
 
-        String endPoint = EndPoints.USER.replace("_ID_", user.getId());
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String ip = SP.getString("example_text", "NA");
+
+        String endPoint = EndPoints.USER.replace("_ID_", user.getId()).replace("<ip>", ip);
 
         Log.e(TAG, "endpoint: " + endPoint);
 

@@ -9,4 +9,21 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="title_activity_chat_room_discussion">ChatRoomDiscussionActivity</string>
     <string name="action_logout">Logout</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Configurações</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Ip do servidor</string>
+    <string name="pref_default_display_name">192.168.1.100</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="txt_configuracao">Congurações</string>
 </resources>
